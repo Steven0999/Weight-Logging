@@ -1,4 +1,4 @@
-let weights = [];
+let weights = JSON.parse(localStorage.getItem('weights')) || [];
 let editIndex = null;
 
 const ctx = document.getElementById('weightChart').getContext('2d');
@@ -15,9 +15,7 @@ let weightChart = new Chart(ctx, {
   },
   options: {
     responsive: true,
-    plugins: {
-      legend: { display: true }
-    }
+    plugins: { legend: { display: true } }
   }
 });
 
@@ -30,16 +28,12 @@ function switchTab(tab) {
 }
 
 function addWeight() {
-  const input = document.getElementById('weightInput');
-  const weight = parseFloat(input.value);
-  if (!weight) return;
+  const weight = parseFloat(document.getElementById('weightInput').value);
+  const date = document.getElementById('dateInput').value;
+  const time = document.getElementById('timeInput').value;
+  if (!weight || !date || !time) return;
 
-  const now = new Date();
-  const entry = {
-    weight,
-    date: now.toLocaleDateString(),
-    time: now.toLocaleTimeString()
-  };
+  const entry = { weight, date, time };
 
   if (editIndex !== null) {
     weights[editIndex] = entry;
@@ -49,18 +43,22 @@ function addWeight() {
     weights.push(entry);
   }
 
-  input.value = '';
+  saveData();
+  clearInputs();
   renderEntries();
 }
 
 function deleteWeight(index) {
   weights.splice(index, 1);
+  saveData();
   renderEntries();
 }
 
 function editWeight(index) {
   const entry = weights[index];
   document.getElementById('weightInput').value = entry.weight;
+  document.getElementById('dateInput').value = entry.date;
+  document.getElementById('timeInput').value = entry.time;
   editIndex = index;
   document.getElementById('addBtn').innerText = 'Update Weight';
 }
@@ -90,3 +88,15 @@ function updateChart() {
   weightChart.data.datasets[0].data = weights.map(e => e.weight);
   weightChart.update();
 }
+
+function saveData() {
+  localStorage.setItem('weights', JSON.stringify(weights));
+}
+
+function clearInputs() {
+  document.getElementById('weightInput').value = '';
+  document.getElementById('dateInput').value = '';
+  document.getElementById('timeInput').value = '';
+}
+
+renderEntries();
