@@ -29,9 +29,14 @@ function switchTab(tab) {
 
 function addWeight() {
   const weight = parseFloat(document.getElementById('weightInput').value);
-  const date = document.getElementById('dateInput').value;
-  const time = document.getElementById('timeInput').value;
-  if (!weight || !date || !time) return;
+  let date = document.getElementById('dateInput').value;
+  let time = document.getElementById('timeInput').value;
+
+  if (!weight) return;
+
+  const now = new Date();
+  if (!date) date = now.toISOString().split("T")[0]; // yyyy-mm-dd
+  if (!time) time = now.toTimeString().split(" ")[0].slice(0, 5); // hh:mm
 
   const entry = { weight, date, time };
 
