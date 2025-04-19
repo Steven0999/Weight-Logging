@@ -1,1 +1,34 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  background: #f4f4f4;
+}
 
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #bbb;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
