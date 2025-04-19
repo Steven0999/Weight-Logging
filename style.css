@@ -1,7 +1,8 @@
 body {
   font-family: sans-serif;
   margin: 20px;
-  background: #f4f4f4;
+  background: black;
+  color: orange;
 }
 
 .tabs {
@@ -13,16 +14,16 @@ body {
 .tab-btn {
   padding: 10px;
   border: none;
-  background: #ddd;
+  background:grey;
   cursor: pointer;
 }
 
 .tab-btn.active {
-  background: #bbb;
+  background: orange;
 }
 
 .card {
-  background: white;
+  background: grey;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
