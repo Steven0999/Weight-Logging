@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weight Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Weight Tracker</h1>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('tracker')">Weight Tracker</button>
+    <button class="tab-btn" onclick="switchTab('graph')">Graph</button>
+  </div>
+
+  <div id="trackerTab">
+    <input type="number" id="weightInput" placeholder="Enter your weight (kg)" />
+    <button onclick="addWeight()" id="addBtn">Add Weight</button>
+    <div id="entries"></div>
+  </div>
+
+  <div id="graphTab" style="display:none;">
+    <canvas id="weightChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
